@@ -38,7 +38,14 @@ if (!fs.existsSync(parsed.smidgenconf)) {
   //fs.writeFileSync(parsed.smidgenconf, '{"provider": "https://nodes.thetangle.org:443"}')
 }*/
 
-const cmd = parsed.argv.remain.shift()
+let cmd = parsed.argv.remain.shift()
+const short = {
+  'seed': 'generate-seed'
+}
+
+if (short[cmd]) {
+  cmd = short[cmd]
+}
 
 smidgen.load(parsed, (err) => {
   if (err) return handleError(err)
